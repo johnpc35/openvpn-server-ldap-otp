@@ -28,6 +28,7 @@ Configuration is via environmental variables.  Here's a list, along with the def
  * `LDAP_TLS_CA_CERT` (_undefined_): The contents of the CA certificate file for the LDAP server.  You'll need this to enable TLS if using self-signed certificates.
 
  * `OVPN_TLS_CIPHERS` (TLS-DHE-RSA-WITH-AES-256-CBC-SHA): Determines which ciphers will be set for `tls-config` in the openvpn config file.
+ * `OVPN_PORT` (1194):  The port OpenVPN uses.
  * `OVPN_PROTOCOL` (udp):  The protocol OpenVPN uses.  Either `udp` or `tcp`.
  * `OVPN_NETWORK` (10.50.50.0 255.255.255.0):  The network that will be used the the VPN in `network_address netmask` format.
  * `OVPN_ROUTES` (_undefined_):  A comma-separated list of routes that OpenVPN will push to the client, in `network_address netmask` format.  e.g. `172.16.10.0 255.255.255.0,172.17.20.0 255.255.255.0`.  If NAT isn't enabled then you'll need to ensure that destinations on the network have the return route set for the OpenVPN network.  The default is to pass all traffic through the VPN tunnel (which will also enable NAT).
@@ -36,6 +37,8 @@ Configuration is via environmental variables.  Here's a list, along with the def
  * `OVPN_DNS_SEARCH_DOMAIN` (_undefined_):  If using the remote network's DNS servers, push a search domain.  This will allow you to lookup by hostnames rather than fully-qualified domain names.  i.e. setting this to `example.org` will allow `ping remotehost` instead of `ping remotehost.example.org`.
  * `OVPN_REGISTER_DNS` (false): Include `register-dns` in the client config, which is a Windows client option that can force some clients to load the DNS configuration.
  * `OVPN_VERBOSITY` (4):  The verbosity of OpenVPN's logs.
+ * `OVPN_MANAGEMENT` (true):  Turn on the management interface.
+ * `OVPN_MANAGEMENT_IP_PORT` (0.0.0.0 5555):  IP and port for the management interface to listen on.
 
  * `REGENERATE_CERTS` (false):  Force the recreation the certificates.
  * `KEY_LENGTH` (2048):  The length of the server key in bits.  Higher is more secure, but will take longer to generate.  e.g. `4096`
@@ -57,7 +60,7 @@ docker run \
            -e "LDAP_URI=ldap://ldap.mycompany.com" \
            -e "LDAP_BASE_DN=dc=mycompany,dc=com" \
            --cap-add=NET_ADMIN \
-           wheelybird/openvpn-ldap-otp
+           jcresencia/openvpn-ldap-otp
 ```
 
 * `--cap-add=NET_ADMIN` is necessary; the container needs to create the tunnel device and create iptable rules.
