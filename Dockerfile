@@ -1,11 +1,9 @@
 FROM centos:6.8
 
-MAINTAINER Brian Lycett <brian@wheelybird.com>
+MAINTAINER John Cresencia <jcresencia@gmail.com>
 
 RUN yum -y install epel-release iptables bash nss-pam-ldapd ca-certificates
 RUN yum -y install openvpn whatmask fail2ban
-
-EXPOSE 1194/udp
 
 ADD ./files/bin /usr/local/bin
 RUN chmod a+x /usr/local/bin/*

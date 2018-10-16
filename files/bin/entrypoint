@@ -19,6 +19,7 @@ fi
 source "$CONFIGFILES/create_server_config.sh"
 
 if [ "${FAIL2BAN_ENABLED}" == "true" ] ; then
+ touch /etc/openvpn/logs/openvpn.log
  source "$CONFIGFILES/setup_fail2ban.sh"
 fi
 

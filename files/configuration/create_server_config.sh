@@ -7,7 +7,7 @@ cat <<Part01 >$CONFIG_FILE
 
 server $OVPN_NETWORK
 
-port 1194
+port $OVPN_PORT
 proto $OVPN_PROTOCOL
 dev tun
 
@@ -70,5 +70,14 @@ plugin /usr/lib64/openvpn/plugins/openvpn-plugin-auth-pam.so openvpn
 verify-client-cert optional
 
 Part03
+
+fi
+
+if [ "${OVPN_MANAGEMENT}" == "true" ] ; then
+
+cat <<Part04 >>$CONFIG_FILE
+management $OVPN_MANAGEMENT_IP_PORT
+
+Part04
 
 fi

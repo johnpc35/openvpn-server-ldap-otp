@@ -32,11 +32,14 @@ if [ ! -d "$LOG_DIR" ]; then
 fi
 
 if [ "${OVPN_TLS_CIPHERS}x" == "x" ];            then export OVPN_TLS_CIPHERS="TLS-DHE-RSA-WITH-AES-256-CBC-SHA"; fi
+if [ "${OVPN_PORT}x" == "x" ];                   then export OVPN_PORT="1194";                                    fi
 if [ "${OVPN_PROTOCOL}x" == "x" ];               then export OVPN_PROTOCOL="udp";                                 fi
 if [ "${OVPN_NETWORK}x" == "x" ];                then export OVPN_NETWORK="10.50.50.0 255.255.255.0";             fi
 if [ "${OVPN_VERBOSITY}x" == "x" ];              then export OVPN_VERBOSITY="3";                                  fi
 if [ "${OVPN_NAT}x" == "x" ];                    then export OVPN_NAT="true";                                     fi
 if [ "${OVPN_REGISTER_DNS}x" == "x" ];           then export OVPN_REGISTER_DNS="false";                           fi
+if [ "${OVPN_MANAGEMENT}x" == "x" ];             then export OVPN_MANAGEMENT="true";                              fi
+if [ "${OVPN_MANAGEMENT_IP_PORT}x" == "x" ];     then export OVPN_MANAGEMENT_IP_PORT="0.0.0.0 5555";              fi
 if [ "${REGENERATE_CERTS}x" == "x" ];            then export REGENERATE_CERTS="false";                            fi
 if [ "${DEBUG}x" == "x" ];                       then export DEBUG="false";                                       fi
 if [ "${LOG_TO_STDOUT}x" == "x" ];               then export LOG_TO_STDOUT="true";                                fi
