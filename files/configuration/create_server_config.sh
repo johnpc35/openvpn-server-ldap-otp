@@ -46,8 +46,6 @@ tls-cipher $OVPN_TLS_CIPHERS
 auth SHA512
 cipher AES-256-CBC
 
-comp-lzo
-
 user nobody
 group nobody
 
