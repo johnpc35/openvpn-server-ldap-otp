@@ -26,6 +26,8 @@ if [ "${OVPN_DNS_SERVERS}x" != "x" ] ; then
   echo "push \"dhcp-option DNS $this_dns_server\"" >> $CONFIG_FILE
  done
 
+ echo "push \"block-outside-dns\"" >> $CONFIG_FILE
+
 fi
 
 if [ "${OVPN_DNS_SEARCH_DOMAIN}x" != "x" ]; then
